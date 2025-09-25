@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects Analysis | BDB Feedback</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-indigo-700 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <i data-feather="book" class="h-6 w-6 mr-2"></i>
+                    <span class="text-xl font-semibold">BDB Feedback Analytics</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Dashboard</a>
+                        <a href="colleges.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Colleges</a>
+                        <a href="subjects.html" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-900">Subjects</a>
+                        <a href="trainers.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Trainers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Subject Performance</h1>
+            <p class="mt-2 text-gray-600">Detailed analysis by subject</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6 mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Semester</label>
+                <select class="w-full border rounded-md px-3 py-2">
+                    <option>All Semesters</option>
+                    <option>Semester 1</option>
+                    <option>Semester 3</option>
+                    <option>Semester 5</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Curriculum</label>
+                <select class="w-full border rounded-md px-3 py-2">
+                    <option>Both</option>
+                    <option>Old Curriculum</option>
+                    <option>New Curriculum</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Score Range</label>
+                <select class="w-full border rounded-md px-3 py-2">
+                    <option>All Scores</option>
+                    <option>High (8-10)</option>
+                    <option>Medium (6-8)</option>
+                    <option>Low (Below 6)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Top Performing Subjects</h2>
+                <div class="h-80">
+                    <canvas id="subjectBarChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Lowest Performing Subjects</h2>
+                <div class="h-80">
+                    <canvas id="subjectLowChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-medium text-gray-900">Subject Comparison</h2>
+                </div>
+            </div>
+            <div id="subjectHeatmap" class="h-96"></div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-medium text-gray-900">Subject Details</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Score</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Colleges</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Digital Business Analysis</td>
+                            <td class="px-6 py-4 whitespace-nowrap">9.29</td>
+                            <td class="px-6 py-4 whitespace-nowrap">KES</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Content Strategy & Storytelling</td>
+                            <td class="px-6 py-4 whitespace-nowrap">9.21</td>
+                            <td class="px-6 py-4 whitespace-nowrap">NK</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Market & Brand Intelligence</td>
+                            <td class="px-6 py-4 whitespace-nowrap">9.18</td>
+                            <td class="px-6 py-4 whitespace-nowrap">NK, Raheja</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Social Media Management</td>
+                            <td class="px-6 py-4 whitespace-nowrap">6.66</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Thakur, KES, Hinduja</td>
+                            <td class="px-6 py-4 whitespace-nowrap">P1</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Check recordings</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Design Thinking</td>
+                            <td class="px-6 py-4 whitespace-nowrap">6.38</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Thakur, KES, Hinduja</td>
+                            <td class="px-6 py-4 whitespace-nowrap">P1</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Add speaker notes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+        AOS.init();
+
+        // Subject Bar Chart
+        const subjectBarCtx = document.getElementById('subjectBarChart').getContext('2d');
+        new Chart(subjectBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Digital Business Analysis', 'Content Strategy', 'Brand Intelligence', 'Legal Framework', 'Quantitative'],
+                datasets: [{
+                    label: 'Average Score',
+                    data: [9.29, 9.21, 9.18, 8.79, 8.34],
+                    backgroundColor: 'rgba(16, 185, 129, 0.7)'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 5,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        // Subject Low Chart
+        const subjectLowCtx = document.getElementById('subjectLowChart').getContext('2d');
+        new Chart(subjectLowCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Language (Hindi)', 'Design Thinking', 'Social Media', 'Corporate CSR', 'Field Project'],
+                datasets: [{
+                    label: 'Average Score',
+                    data: [6.15, 6.38, 6.66, 6.79, 6.84],
+                    backgroundColor: 'rgba(239, 68, 68, 0.7)'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 5,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        // Subject Heatmap
+        const subjectHeatmap = new ApexCharts(document.querySelector("#subjectHeatmap"), {
+            series: [
+                {
+                    name: 'Score',
+                    data: [
+                        {x: 'Digital Business', y: 8.5},
+                        {x: 'Quantitative', y: 8.3},
+                        {x: 'Legal', y: 8.8},
+                        {x: 'Digital Skills', y: 8.5},
+                        {x: 'Coding', y: 7.1},
+                        {x: 'India', y: 7.7},
+                        {x: 'Communication', y: 7.8},
+                        {x: 'IKS', y: 7.7},
+                        {x: 'Social Media', y: 6.5},
+                        {x: 'Content Strategy', y: 7.9},
+                        {x: 'Accounting', y: 7.1},
+                        {x: 'Designing', y: 7.3},
+                        {x: 'Advertising', y: 7.0},
+                        {x: 'Hindi', y: 6.1},
+                        {x: 'Field Project', y: 6.6},
+                        {x: 'CSR', y: 6.0},
+                        {x: 'Media Planning', y: 7.5},
+                        {x: 'Web Analytics', y: 7.9},
+                        {x: 'Consumer', y: 7.1},
+                        {x: 'Corporate', y: 7.5},
+                        {x: 'Marketing', y: 7.4},
+                        {x: 'Design Thinking', y: 6.2},
+                        {x: 'Ecotourism', y: 7.4}
+                    ]
+                }
+            ],
+            chart: {
+                type: 'heatmap',
+                height: '100%',
+                toolbar: {
+                    show: false
+                }
+            },
+            plotOptions: {
+                heatmap: {
+                    colorScale: {
+                        ranges: [
+                            {
+                                from: 5,
+                                to: 6.5,
+                                color: '#EF4444',
+                                name: 'Low'
+                            },
+                            {
+                                from: 6.5,
+                                to: 8,
+                                color: '#F59E0B',
+                                name: 'Medium'
+                            },
+                            {
+                                from: 8,
+                                to: 10,
+                                color: '#10B981',
+                                name: 'High'
+                            }
+                        ]
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            tooltip: {
+                custom: function({series, seriesIndex, dataPointIndex, w}) {
+                    const score = w.globals.series[seriesIndex][dataPointIndex];
+                    const subject = w.globals.labels[dataPointIndex];
+                    return `<div class="bg-white p-2 rounded shadow">
+                        <p class="font-semibold">${subject}</p>
+                        <p>Average Score: ${score.toFixed(1)}</p>
+                    </div>`;
+                }
+            }
+        });
+        subjectHeatmap.render();
+    </script>
+</body>
+</html>

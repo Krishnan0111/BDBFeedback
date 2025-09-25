@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainers Analysis | BDB Feedback</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-indigo-700 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <i data-feather="users" class="h-6 w-6 mr-2"></i>
+                    <span class="text-xl font-semibold">BDB Feedback Analytics</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Dashboard</a>
+                        <a href="colleges.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Colleges</a>
+                        <a href="subjects.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Subjects</a>
+                        <a href="trainers.html" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-900">Trainers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Trainer Performance</h1>
+            <p class="mt-2 text-gray-600">Detailed analysis by trainer</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Top Trainers</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center p-3 bg-green-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <i data-feather="award" class="text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Ganesh Kumar</h3>
+                            <p class="text-sm text-gray-600">Avg Score: 9.12</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-indigo-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
+                            <i data-feather="award" class="text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Priya Sharma</h3>
+                            <p class="text-sm text-gray-600">Avg Score: 8.96</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-blue-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i data-feather="award" class="text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Rahul Mehta</h3>
+                            <p class="text-sm text-gray-600">Avg Score: 8.83</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Performance Overview</h2>
+                <div class="h-64">
+                    <canvas id="trainerPerformanceChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Trainers Needing Support</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center p-3 bg-red-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <i data-feather="alert-triangle" class="text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Aishwarya Dhadke</h3>
+                            <p class="text-sm text-gray-600">Avg Score: 5.89 (Web Analytics)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-amber-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-4">
+                            <i data-feather="alert-triangle" class="text-amber-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Gowri Shenoy</h3>
+                            <p class="text-sm text-gray-600">Avg Score: 6.12 (Content Strategy)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-3 bg-yellow-50 rounded-lg">
+                        <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                            <i data-feather="alert-triangle" class="text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium">Bhavik Shah</h3>
+                            <p class="text-sm text-gray-600">Avg Score: 6.45 (Managerial Economics)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-medium text-gray-900">Detailed Trainer Performance</h2>
+                    <div class="relative">
+                        <select class="border rounded-md px-3 py-1 text-sm">
+                            <option>Sort by Score</option>
+                            <option>Sort by Name</option>
+                            <option>Sort by Subject</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trainer</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">College</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Score</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Ganesh Kumar</td>
+                            <td class="px-6 py-4 whitespace-nowrap">KES College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Digital Business Analysis</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Excellent</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">9.44</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Priya Sharma</td>
+                            <td class="px-6 py-4 whitespace-nowrap">NK College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Content Strategy</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Excellent</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">9.36</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Aishwarya Dhadke</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Hinduja College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Web Analytics</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">Needs Support</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">5.89</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Review session recordings</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Gowri Shenoy</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Hinduja College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Content Strategy</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs rounded-full bg-amber-100 text-amber-800">Needs Improvement</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">6.12</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Mentoring required</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Training Feedback Areas</h2>
+                <div class="h-64">
+                    <canvas id="feedbackAreasChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Trainer Score Distribution</h2>
+                <div class="h-64">
+                    <canvas id="scoreDistributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        feather.replace();
+        AOS.init();
+
+        // Trainer Performance Chart
+        const trainerPerformanceCtx = document.getElementById('trainerPerformanceChart').getContext('2d');
+        new Chart(trainerPerformanceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Excellent (8-10)', 'Good (6-8)', 'Needs Support (<6)'],
+                datasets: [{
+                    data: [42, 48, 10],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(239, 68, 68, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(239, 68, 68, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+
+        // Feedback Areas Chart
+        const feedbackAreasCtx = document.getElementById('feedbackAreasChart').getContext('2d');
+        new Chart(feedbackAreasCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Content Knowledge', 'Delivery', 'Interaction', 'Deck Usage', 'Coverage', 'Pace'],
+                datasets: [
+                    {
+                        label: 'Top Trainers',
+                        data: [9.2, 9.4, 8.7, 8.9, 9.1, 8.8],
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        pointBackgroundColor: 'rgba(16, 185, 129, 1)'
+                    },
+                    {
+                        label: 'All Trainers Avg',
+                        data: [7.8, 7.5, 7.2, 7.3, 7.6, 7.4],
+                        backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                        borderColor: 'rgba(79, 70, 229, 1)',
+                        pointBackgroundColor: 'rgba(79, 70, 229, 1)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 5,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+
+        // Score Distribution Chart
+        const scoreDistributionCtx = document.getElementById('scoreDistributionChart').getContext('2d');
+        new Chart(scoreDistributionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['5-6', '6-7', '7-8', '8-9', '9-10'],
+                datasets: [{
+                    label: 'Trainers by Score',
+                    data: [5, 15, 32, 28, 20],
+                    backgroundColor: 'rgba(79, 70, 229, 0.7)'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Trainers'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Score Range'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

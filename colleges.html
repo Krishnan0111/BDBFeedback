@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colleges Analysis | BDB Feedback</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-indigo-700 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <i data-feather="bookmark" class="h-6 w-6 mr-2"></i>
+                    <span class="text-xl font-semibold">BDB Feedback Analytics</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Dashboard</a>
+                        <a href="colleges.html" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-900">Colleges</a>
+                        <a href="subjects.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Subjects</a>
+                        <a href="trainers.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Trainers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">College Performance</h1>
+            <p class="mt-2 text-gray-600">Detailed analysis by college</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Top Performing Colleges</h2>
+                <div class="h-64">
+                    <canvas id="collegeRankingChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Score Distribution</h2>
+                <div class="h-64">
+                    <canvas id="collegeBoxPlot"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-medium text-gray-900">College Comparison</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">College</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Content</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Trainer</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subjects</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action Items</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">NK College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">8.93</td>
+                            <td class="px-6 py-4 whitespace-nowrap">9.01</td>
+                            <td class="px-6 py-4 whitespace-nowrap">9</td>
+                            <td class="px-6 py-4 whitespace-nowrap">-</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">KES College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">7.74</td>
+                            <td class="px-6 py-4 whitespace-nowrap">7.89</td>
+                            <td class="px-6 py-4 whitespace-nowrap">15</td>
+                            <td class="px-6 py-4 whitespace-nowrap">2</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Hinduja College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">7.35</td>
+                            <td class="px-6 py-4 whitespace-nowrap">7.43</td>
+                            <td class="px-6 py-4 whitespace-nowrap">12</td>
+                            <td class="px-6 py-4 whitespace-nowrap">4</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">Thakur College</td>
+                            <td class="px-6 py-4 whitespace-nowrap">7.32</td>
+                            <td class="px-6 py-4 whitespace-nowrap">7.57</td>
+                            <td class="px-6 py-4 whitespace-nowrap">15</td>
+                            <td class="px-6 py-4 whitespace-nowrap">3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Curriculum Comparison</h2>
+                <div class="h-72">
+                    <canvas id="curriculumChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-lg font-medium mb-4">Action Items by College</h2>
+                <div class="h-72">
+                    <canvas id="actionItemsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace();
+        AOS.init();
+
+        // College Ranking Chart
+        const collegeRankingCtx = document.getElementById('collegeRankingChart').getContext('2d');
+        new Chart(collegeRankingCtx, {
+            type: 'bar',
+            data: {
+                labels: ['NK College', 'KES College', 'Hinduja College', 'Thakur College'],
+                datasets: [{
+                    label: 'Average Score',
+                    data: [8.97, 7.81, 7.39, 7.44],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(79, 70, 229, 0.7)',
+                        'rgba(245, 158, 11, 0.7)',
+                        'rgba(239, 68, 68, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(79, 70, 229, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(239, 68, 68, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 5,
+                        max: 10
+                    }
+                }
+            }
+        });
+
+        // Curriculum Comparison Chart
+        const curriculumCtx = document.getElementById('curriculumChart').getContext('2d');
+        new Chart(curriculumCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Content', 'Trainer', 'Interaction', 'Delivery', 'Coverage'],
+                datasets: [
+                    {
+                        label: 'New Curriculum',
+                        data: [8.4, 8.5, 7.2, 7.9, 7.8],
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderColor: 'rgba(16, 185, 129, 1)',
+                        pointBackgroundColor: 'rgba(16, 185, 129, 1)'
+                    },
+                    {
+                        label: 'Old Curriculum',
+                        data: [7.5, 7.7, 6.5, 7.3, 6.9],
+                        backgroundColor: 'rgba(79, 70, 229, 0.2)',
+                        borderColor: 'rgba(79, 70, 229, 1)',
+                        pointBackgroundColor: 'rgba(79, 70, 229, 1)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 5,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
