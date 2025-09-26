@@ -309,7 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
             dataLabels: {
                 enabled: true,
                 style: {
-                    fontSize: '16px',
+                    fontSize: '20px',
+                    fontWeight: 'bold'
                 },
                 formatter: function(text, op) {
                     return [text, op.value.toFixed(1)]
