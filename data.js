@@ -1,96 +1,822 @@
-// This file contains the raw data for the dashboard.
-// In a real-world application, this would likely be fetched from a server API.
-
 const rawData = [
-    {"Subject":"Fundamentals of Digital Business Management","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":7.79,"TrainerScore":7.99,"ActionItems":""},
-    {"Subject":"Quantitative Techniques","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":8.39,"TrainerScore":8.81,"ActionItems":""},
-    {"Subject":"Legal Framework I","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":8.79,"TrainerScore":9,"ActionItems":""},
-    {"Subject":"Digital Skills for Business Development","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":8.51,"TrainerScore":8.55,"ActionItems":""},
-    {"Subject":"Foundation of Coding","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":7.09,"TrainerScore":7.17,"ActionItems":""},
-    {"Subject":"Understanding India","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":7.66,"TrainerScore":7.93,"ActionItems":""},
-    {"Subject":"Effective Communication Skills - English ","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":7.75,"TrainerScore":8.06,"ActionItems":""},
-    {"Subject":"Indian Knowledge Systems","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":7.65,"TrainerScore":7.74,"ActionItems":""},
-    {"Subject":"Digital Business Landscape","Curriculum":"Old Curriculum","College":"Thakur College","Sem":null,"ContentScore":8.71,"TrainerScore":null,"ActionItems":""},
-    {"Subject":"SWAYAM - Consumer Psychology","Curriculum":"Old Curriculum","College":"Thakur College","Sem":1,"ContentScore":7.78,"TrainerScore":null,"ActionItems":""},
-    {"Subject":"Social Media Management","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":6.49,"TrainerScore":6.16,"ActionItems":"- Check the recordings, if available.\n- Talk to the trainer to find out the issues.\n- It might be a trainer issue as other colleges apart from Thakur and KES have gotten considerably higher comparatively."},
-    {"Subject":"Content Strategy & Campaign","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":7.93,"TrainerScore":8.22,"ActionItems":""},
-    {"Subject":"Accounting for Managers","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":7.13,"TrainerScore":7.36,"ActionItems":""},
-    {"Subject":"Commercial Designing I","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":7.33,"TrainerScore":7.22,"ActionItems":""},
-    {"Subject":"Digital Advertising","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":6.98,"TrainerScore":6.98,"ActionItems":""},
-    {"Subject":"Language 1 (Hindi I)","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":6.13,"TrainerScore":6.64,"ActionItems":""},
-    {"Subject":"Field Project on Digital Business","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":6.62,"TrainerScore":7.13,"ActionItems":""},
-    {"Subject":"SWAYAM - Corporate Social Responsibility","Curriculum":"Old Curriculum","College":"Thakur College","Sem":3,"ContentScore":6,"TrainerScore":null,"ActionItems":""},
-    {"Subject":"Media Planning & Management","Curriculum":"Old Curriculum","College":"Thakur College","Sem":5,"ContentScore":7.52,"TrainerScore":7.25,"ActionItems":""},
-    {"Subject":"Web Analytics & Data Management","Curriculum":"Old Curriculum","College":"Thakur College","Sem":5,"ContentScore":7.86,"TrainerScore":8.16,"ActionItems":""},
-    {"Subject":"Consumer Behaviour & Analytics","Curriculum":"Old Curriculum","College":"Thakur College","Sem":5,"ContentScore":7.14,"TrainerScore":7.19,"ActionItems":""},
-    {"Subject":"Corporate Communication & Public Relations","Curriculum":"Old Curriculum","College":"Thakur College","Sem":5,"ContentScore":7.52,"TrainerScore":7.98,"ActionItems":""},
-    {"Subject":"Marketing Automation","Curriculum":"Old Curriculum","College":"Thakur College","Sem":5,"ContentScore":7.42,"TrainerScore":7.53,"ActionItems":""},
-    {"Subject":"Design Thinking","Curriculum":"Old Curriculum","College":"Thakur College","Sem":5,"ContentScore":6.19,"TrainerScore":6.19,"ActionItems":"- Talk to the trainer. The trainer in KES mentioned that they finished the slides very early.\n- In a lot of slides there are just images. Which might be an issue.\n- Addressed by adding speaker notes. For the trainer who takes in KES"},
-    {"Subject":"Community Engagement Program — Ecotourism & Digital Storytelling","Curriculum":"Old Curriculum","College":"Thakur College","Sem":5,"ContentScore":7.39,"TrainerScore":7.66,"ActionItems":""},
-    {"Subject":"Digital Business Analysis","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":9.14,"TrainerScore":9.44,"ActionItems":""},
-    {"Subject":"Principles of Management ","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":8.02,"TrainerScore":8.02,"ActionItems":""},
-    {"Subject":"Digital Marketing Landscape","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":9.05,"TrainerScore":9.35,"ActionItems":""},
-    {"Subject":"Quantitative Techniques","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":8.28,"TrainerScore":8.79,"ActionItems":""},
-    {"Subject":"Managerial Economics","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":6.81,"TrainerScore":7.26,"ActionItems":"- Check if the trainer is using our deck.\n- What is their view of the content by us."},
-    {"Subject":"Foundation Course","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":7.14,"TrainerScore":7.56,"ActionItems":""},
-    {"Subject":"Digital Literacy","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":8.37,"TrainerScore":8.42,"ActionItems":""},
-    {"Subject":"Indian Management Thoughts & Practices","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":7.98,"TrainerScore":8.7,"ActionItems":""},
-    {"Subject":"Professional Communication","Curriculum":"Old Curriculum","College":"KES College","Sem":1,"ContentScore":8.95,"TrainerScore":9.33,"ActionItems":""},
-    {"Subject":"Social Media Management","Curriculum":"Old Curriculum","College":"KES College","Sem":3,"ContentScore":6.7,"TrainerScore":6.59,"ActionItems":"- Check the recordings, if available.\n- Talk to the trainer and college coordinator to find out the issues.\n- It might be a trainer issue as other colleges apart from Thakur and KES have gotten considerably higher comparatively."},
-    {"Subject":"Digital Advertising ","Curriculum":"Old Curriculum","College":"KES College","Sem":3,"ContentScore":7.37,"TrainerScore":7.64,"ActionItems":""},
-    {"Subject":"Commercial Designing","Curriculum":"Old Curriculum","College":"KES College","Sem":3,"ContentScore":7.59,"TrainerScore":7.82,"ActionItems":""},
-    {"Subject":"Content Strategy & Campaign ","Curriculum":"Old Curriculum","College":"KES College","Sem":3,"ContentScore":8.77,"TrainerScore":8.97,"ActionItems":""},
-    {"Subject":"Language I (Hindi I) ","Curriculum":"Old Curriculum","College":"KES College","Sem":3,"ContentScore":7.8,"TrainerScore":7.87,"ActionItems":""},
-    {"Subject":"FP - Foundations ","Curriculum":"Old Curriculum","College":"KES College","Sem":3,"ContentScore":6.32,"TrainerScore":6.98,"ActionItems":""},
-    {"Subject":"Media Planning & Management","Curriculum":"Old Curriculum","College":"KES College","Sem":5,"ContentScore":7.73,"TrainerScore":7.9,"ActionItems":""},
-    {"Subject":"Web Analytics & Data Management","Curriculum":"Old Curriculum","College":"KES College","Sem":5,"ContentScore":7.77,"TrainerScore":8.26,"ActionItems":""},
-    {"Subject":"Consumer Behaviour & Analytics","Curriculum":"Old Curriculum","College":"KES College","Sem":5,"ContentScore":6.49,"TrainerScore":6.06,"ActionItems":""},
-    {"Subject":"Corporate Communication & Public Relations","Curriculum":"Old Curriculum","College":"KES College","Sem":5,"ContentScore":6.6,"TrainerScore":6.71,"ActionItems":""},
-    {"Subject":"Marketing Automation","Curriculum":"Old Curriculum","College":"KES College","Sem":5,"ContentScore":7.44,"TrainerScore":7.71,"ActionItems":""},
-    {"Subject":"Design Thinking","Curriculum":"Old Curriculum","College":"KES College","Sem":5,"ContentScore":6.66,"TrainerScore":6.98,"ActionItems":""},
-    {"Subject":"Project work","Curriculum":"Old Curriculum","College":"KES College","Sem":5,"ContentScore":6.74,"TrainerScore":null,"ActionItems":""},
-    {"Subject":"Social Media Management   ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(A)","ContentScore":6,"TrainerScore":5.96,"ActionItems":"- Watch session recordings or attend the sessions for this subject.\n- The trainer has scored low in multiple batches. The low content rating might be a correlation to that"},
-    {"Subject":"Commercial Designing ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(A)","ContentScore":7.46,"TrainerScore":7.59,"ActionItems":""},
-    {"Subject":"Content Strategy & Campaign ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(A)","ContentScore":6.57,"TrainerScore":6.44,"ActionItems":""},
-    {"Subject":"Digital Advertising ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(A)","ContentScore":8.67,"TrainerScore":9.06,"ActionItems":""},
-    {"Subject":"Financial Accounting ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(A)","ContentScore":7.63,"TrainerScore":7.63,"ActionItems":""},
-    {"Subject":"Language I (Hindi) ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(A)","ContentScore":5.26,"TrainerScore":6.06,"ActionItems":""},
-    {"Subject":"Social Media Management   ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(B)","ContentScore":7.07,"TrainerScore":7.46,"ActionItems":""},
-    {"Subject":"Commercial Designing ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(B)","ContentScore":8.18,"TrainerScore":8.21,"ActionItems":""},
-    {"Subject":"Content Strategy & Campaign ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(B)","ContentScore":6.79,"TrainerScore":6.93,"ActionItems":"- Watch recordings of this trainer's session (Gowri Shenoy) as they've gotten a low rating in other college as well."},
-    {"Subject":"Digital Advertising ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(B)","ContentScore":8.89,"TrainerScore":8.89,"ActionItems":""},
-    {"Subject":"Financial Accounting ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(B)","ContentScore":7.96,"TrainerScore":7.82,"ActionItems":""},
-    {"Subject":"Language I (Hindi) ","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":"3(B)","ContentScore":6.04,"TrainerScore":6.18,"ActionItems":""},
-    {"Subject":"Media Planning & Management","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":5,"ContentScore":7.77,"TrainerScore":7.69,"ActionItems":""},
-    {"Subject":"Web Analytics & Data Management","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":5,"ContentScore":6.69,"TrainerScore":6.35,"ActionItems":"- Talk to the trainer (Aishwarya Dhadke).\n- Maybe ask internal trainers to connect with external trainers for BDB on how they go about the session."},
-    {"Subject":"Consumer Behaviour & Analytics","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":5,"ContentScore":5.42,"TrainerScore":5.54,"ActionItems":"- Watch recordings of this trainer's session (Gowri Shenoy) as they've gotten a low rating in other college as well."},
-    {"Subject":"Corporate Communication & Public Relations","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":5,"ContentScore":8.08,"TrainerScore":8.31,"ActionItems":""},
-    {"Subject":"Marketing Automation","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":5,"ContentScore":8.38,"TrainerScore":8.73,"ActionItems":""},
-    {"Subject":"Design Thinking","Curriculum":"Old Curriculum","College":"Hinduja College","Sem":5,"ContentScore":7.42,"TrainerScore":7.54,"ActionItems":""},
-    {"Subject":"Managerial Economics ","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":8.36,"TrainerScore":8.54,"ActionItems":""},
-    {"Subject":"Content Strategy and Storytelling ","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":9.31,"TrainerScore":9.36,"ActionItems":""},
-    {"Subject":"Market & Brand Intelligence","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":9.29,"TrainerScore":9.17,"ActionItems":""},
-    {"Subject":"Foundation of Marketing & Customer Strategies ","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":9.03,"TrainerScore":9.02,"ActionItems":""},
-    {"Subject":"Fundamentals of Digital Business & Management ","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":9.1,"TrainerScore":9.07,"ActionItems":""},
-    {"Subject":"Introduction to Psychology ","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":9.15,"TrainerScore":9,"ActionItems":""},
-    {"Subject":"Effective Communication Skills ","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":8.75,"TrainerScore":8.69,"ActionItems":""},
-    {"Subject":"Indian Ethos in Management","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":8.66,"TrainerScore":8.75,"ActionItems":""},
-    {"Subject":"Foundation Course ","Curriculum":"New Curriculum","College":"NK College","Sem":1,"ContentScore":8.71,"TrainerScore":8.54,"ActionItems":""},
-    {"Subject":"Digital Advertising ","Curriculum":"Old Curriculum","College":"NK College","Sem":3,"ContentScore":8.41,"TrainerScore":8.78,"ActionItems":""},
-    {"Subject":"Content Strategy and Campaign ","Curriculum":"Old Curriculum","College":"NK College","Sem":3,"ContentScore":9.22,"TrainerScore":9.3,"ActionItems":""},
-    {"Subject":"Social Media Management ","Curriculum":"Old Curriculum","College":"NK College","Sem":3,"ContentScore":8.59,"TrainerScore":8.51,"ActionItems":""},
-    {"Subject":"Commercial Designing ","Curriculum":"Old Curriculum","College":"NK College","Sem":3,"ContentScore":7.81,"TrainerScore":8.22,"ActionItems":""},
-    {"Subject":"Financial Accounting","Curriculum":"Old Curriculum","College":"NK College","Sem":3,"ContentScore":8.41,"TrainerScore":8.73,"ActionItems":""},
-    {"Subject":"Language - I Hindi","Curriculum":"Old Curriculum","College":"NK College","Sem":3,"ContentScore":7.84,"TrainerScore":8.65,"ActionItems":""},
-    {"Subject":" Market & Brand Intelligence ","Curriculum":"New Curriculum","College":"Raheja College","Sem":1,"ContentScore":9.21,"TrainerScore":9.14,"ActionItems":""},
-    {"Subject":"Fundamentals of Digital Business & Management ","Curriculum":"New Curriculum","College":"Raheja College","Sem":1,"ContentScore":8.5,"TrainerScore":7.93,"ActionItems":"- Wait till the end of the semester to check if the ratings go up."},
-    {"Subject":"Overview of Psychology ","Curriculum":"New Curriculum","College":"Raheja College","Sem":1,"ContentScore":8.5,"TrainerScore":8.53,"ActionItems":""},
-    {"Subject":"Business Economics","Curriculum":"New Curriculum","College":"Raheja College","Sem":1,"ContentScore":7.5,"TrainerScore":7.93,"ActionItems":"- Attend more Business Economics sessions.\n- Talk to the trainer and understand their perspective.\n- After attending, if the content seems too much, make changes to the deck."},
-    {"Subject":"Foundations of Marketing & Customer Strategies ","Curriculum":"New Curriculum","College":"Raheja College","Sem":1,"ContentScore":7.75,"TrainerScore":8.04,"ActionItems":"- Contact the trainer and ask what is the issue that students are facing in content."},
-    {"Subject":"Content Strategy & Storytelling","Curriculum":"New Curriculum","College":"Raheja College","Sem":1,"ContentScore":8.57,"TrainerScore":8.5,"ActionItems":""},
-    {"Subject":"Introduction to Communication","Curriculum":"New Curriculum","College":"Raheja College","Sem":1,"ContentScore":7.93,"TrainerScore":8.11,"ActionItems":"- Check with Naziya if the deck is being followed.\n- Check with the trainer if there are any issues with the deck.\n- Probably wait till the end of semester to check."},
-    {"Subject":"Media Planning & Management","Curriculum":"Old Curriculum","College":"Pillai College","Sem":5,"ContentScore":7.96,"TrainerScore":8.06,"ActionItems":""},
-    {"Subject":"Web Analytics & Data Management","Curriculum":"Old Curriculum","College":"Pillai College","Sem":5,"ContentScore":8.38,"TrainerScore":8.58,"ActionItems":""},
-    {"Subject":"Consumer Behaviour & Analytics","Curriculum":"Old Curriculum","College":"Pillai College","Sem":5,"ContentScore":8.46,"TrainerScore":8.67,"ActionItems":""},
-    {"Subject":"Marketing Automation","Curriculum":"Old Curriculum","College":"Pillai College","Sem":5,"ContentScore":7.69,"TrainerScore":7.58,"ActionItems":""}
+    {
+        "Subject": "Fundamentals of Digital Business Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 7.79,
+        "TrainerScore": 7.99,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Quantitative Techniques",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 8.39,
+        "TrainerScore": 8.81,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Legal Framework I",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 8.79,
+        "TrainerScore": 9.0,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Skills for Business Development",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 8.51,
+        "TrainerScore": 8.55,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Foundation of Coding",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 7.09,
+        "TrainerScore": 7.17,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Understanding India",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 7.66,
+        "TrainerScore": 7.93,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Effective Communication Skills - English",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 7.75,
+        "TrainerScore": 8.06,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Indian Knowledge Systems",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 7.65,
+        "TrainerScore": 7.74,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Business Landscape",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": null,
+        "ContentScore": 8.71,
+        "TrainerScore": null,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "SWAYAM - Consumer Psychology",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "1",
+        "ContentScore": 7.78,
+        "TrainerScore": null,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Social Media Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 6.49,
+        "TrainerScore": 6.16,
+        "ActionItems": "- Check the recordings, if available.\n- Talk to the trainer to find out the issues.\n- It might be a trainer issue as other colleges apart from Thakur and KES have gotten considerably higher comparatively."
+    },
+    {
+        "Subject": "Content Strategy & Campaign",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 7.93,
+        "TrainerScore": 8.22,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Accounting for Managers",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 7.13,
+        "TrainerScore": 7.36,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Commercial Designing I",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 7.33,
+        "TrainerScore": 7.22,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Advertising",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 6.98,
+        "TrainerScore": 6.98,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Language 1 (Hindi I)",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 6.13,
+        "TrainerScore": 6.64,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Field Project on Digital Business",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 6.62,
+        "TrainerScore": 7.13,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "SWAYAM - Corporate Social Responsibility",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "3",
+        "ContentScore": 6.0,
+        "TrainerScore": null,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Media Planning & Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "5",
+        "ContentScore": 7.52,
+        "TrainerScore": 7.25,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Web Analytics & Data Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "5",
+        "ContentScore": 7.86,
+        "TrainerScore": 8.16,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Consumer Behaviour & Analytics",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "5",
+        "ContentScore": 7.14,
+        "TrainerScore": 7.19,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Corporate Communication & Public Relations",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "5",
+        "ContentScore": 7.52,
+        "TrainerScore": 7.98,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Marketing Automation",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "5",
+        "ContentScore": 7.42,
+        "TrainerScore": 7.53,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Design Thinking",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "5",
+        "ContentScore": 6.19,
+        "TrainerScore": 6.19,
+        "ActionItems": "- Talk to the trainer. The trainer in KES mentioned that they finished the slides very early.\n- In a lot of slides there are just images. Which might be an issue.\n- Addressed by adding speaker notes. For the trainer who takes in KES"
+    },
+    {
+        "Subject": "Community Engagement Program \u2014 Ecotourism & Digital Storytelling",
+        "Curriculum": "Old Curriculum",
+        "College": "Thakur College",
+        "Sem": "5",
+        "ContentScore": 7.39,
+        "TrainerScore": 7.66,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Business Analysis",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 9.14,
+        "TrainerScore": 9.44,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Principles of Management",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 8.02,
+        "TrainerScore": 8.02,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Marketing Landscape",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 9.05,
+        "TrainerScore": 9.35,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Quantitative Techniques",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 8.28,
+        "TrainerScore": 8.79,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Managerial Economics",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 6.81,
+        "TrainerScore": 7.26,
+        "ActionItems": "- Check if the trainer is using our deck.\n- What is their view of the content by us."
+    },
+    {
+        "Subject": "Foundation Course",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 7.14,
+        "TrainerScore": 7.56,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Literacy",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 8.37,
+        "TrainerScore": 8.42,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Indian Management Thoughts & Practices",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 7.98,
+        "TrainerScore": 8.7,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Professional Communication",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "1",
+        "ContentScore": 8.95,
+        "TrainerScore": 9.33,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Social Media Management",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "3",
+        "ContentScore": 6.7,
+        "TrainerScore": 6.59,
+        "ActionItems": "- Check the recordings, if available.\n- Talk to the trainer and college coordinator to find out the issues.\n- It might be a trainer issue as other colleges apart from Thakur and KES have gotten considerably higher comparatively."
+    },
+    {
+        "Subject": "Digital Advertising",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "3",
+        "ContentScore": 7.37,
+        "TrainerScore": 7.64,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Commercial Designing",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "3",
+        "ContentScore": 7.59,
+        "TrainerScore": 7.82,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Content Strategy & Campaign",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "3",
+        "ContentScore": 8.77,
+        "TrainerScore": 8.97,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Language I (Hindi I)",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "3",
+        "ContentScore": 7.8,
+        "TrainerScore": 7.87,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "FP - Foundations",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "3",
+        "ContentScore": 6.32,
+        "TrainerScore": 6.98,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Media Planning & Management",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "5",
+        "ContentScore": 7.73,
+        "TrainerScore": 7.9,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Web Analytics & Data Management",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "5",
+        "ContentScore": 7.77,
+        "TrainerScore": 8.26,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Consumer Behaviour & Analytics",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "5",
+        "ContentScore": 6.49,
+        "TrainerScore": 6.06,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Corporate Communication & Public Relations",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "5",
+        "ContentScore": 6.6,
+        "TrainerScore": 6.71,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Marketing Automation",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "5",
+        "ContentScore": 7.44,
+        "TrainerScore": 7.71,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Design Thinking",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "5",
+        "ContentScore": 6.66,
+        "TrainerScore": 6.98,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Project work",
+        "Curriculum": "Old Curriculum",
+        "College": "KES College",
+        "Sem": "5",
+        "ContentScore": 6.74,
+        "TrainerScore": null,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Social Media Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(A)",
+        "ContentScore": 6.0,
+        "TrainerScore": 5.96,
+        "ActionItems": "- Watch session recordings or attend the sessions for this subject.\n- The trainer has scored low in multiple batches. The low content rating might be a correlation to that"
+    },
+    {
+        "Subject": "Commercial Designing",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(A)",
+        "ContentScore": 7.46,
+        "TrainerScore": 7.59,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Content Strategy & Campaign",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(A)",
+        "ContentScore": 6.57,
+        "TrainerScore": 6.44,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Advertising",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(A)",
+        "ContentScore": 8.67,
+        "TrainerScore": 9.06,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Financial Accounting",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(A)",
+        "ContentScore": 7.63,
+        "TrainerScore": 7.63,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Language I (Hindi)",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(A)",
+        "ContentScore": 5.26,
+        "TrainerScore": 6.06,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Social Media Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(B)",
+        "ContentScore": 7.07,
+        "TrainerScore": 7.46,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Commercial Designing",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(B)",
+        "ContentScore": 8.18,
+        "TrainerScore": 8.21,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Content Strategy & Campaign",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(B)",
+        "ContentScore": 6.79,
+        "TrainerScore": 6.93,
+        "ActionItems": "- Watch recordings of this trainer's session (Gowri Shenoy) as they've gotten a low rating in other college as well."
+    },
+    {
+        "Subject": "Digital Advertising",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(B)",
+        "ContentScore": 8.89,
+        "TrainerScore": 8.89,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Financial Accounting",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(B)",
+        "ContentScore": 7.96,
+        "TrainerScore": 7.82,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Language I (Hindi)",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "3(B)",
+        "ContentScore": 6.04,
+        "TrainerScore": 6.18,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Media Planning & Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "5",
+        "ContentScore": 7.77,
+        "TrainerScore": 7.69,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Web Analytics & Data Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "5",
+        "ContentScore": 6.69,
+        "TrainerScore": 6.35,
+        "ActionItems": "- Talk to the trainer (Aishwarya Dhadke).\n- Maybe ask internal trainers to connect with external trainers for BDB on how they go about the session."
+    },
+    {
+        "Subject": "Consumer Behaviour & Analytics",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "5",
+        "ContentScore": 5.42,
+        "TrainerScore": 5.54,
+        "ActionItems": "- Watch recordings of this trainer's session (Gowri Shenoy) as they've gotten a low rating in other college as well."
+    },
+    {
+        "Subject": "Corporate Communication & Public Relations",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "5",
+        "ContentScore": 8.08,
+        "TrainerScore": 8.31,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Marketing Automation",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "5",
+        "ContentScore": 8.38,
+        "TrainerScore": 8.73,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Design Thinking",
+        "Curriculum": "Old Curriculum",
+        "College": "Hinduja College",
+        "Sem": "5",
+        "ContentScore": 7.42,
+        "TrainerScore": 7.54,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Managerial Economics",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 8.36,
+        "TrainerScore": 8.54,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Content Strategy and Storytelling",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 9.31,
+        "TrainerScore": 9.36,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Market & Brand Intelligence",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 9.29,
+        "TrainerScore": 9.17,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Foundation of Marketing & Customer Strategies",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 9.03,
+        "TrainerScore": 9.02,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Fundamentals of Digital Business & Management",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 9.1,
+        "TrainerScore": 9.07,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Introduction to Psychology",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 9.15,
+        "TrainerScore": 9.0,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Effective Communication Skills",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 8.75,
+        "TrainerScore": 8.69,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Indian Ethos in Management",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 8.66,
+        "TrainerScore": 8.75,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Foundation Course",
+        "Curriculum": "New Curriculum",
+        "College": "NK College",
+        "Sem": "1",
+        "ContentScore": 8.71,
+        "TrainerScore": 8.54,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Digital Advertising",
+        "Curriculum": "Old Curriculum",
+        "College": "NK College",
+        "Sem": "3",
+        "ContentScore": 8.41,
+        "TrainerScore": 8.78,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Content Strategy and Campaign",
+        "Curriculum": "Old Curriculum",
+        "College": "NK College",
+        "Sem": "3",
+        "ContentScore": 9.22,
+        "TrainerScore": 9.3,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Social Media Management",
+        "Curriculum": "Old Curriculum",
+        "College": "NK College",
+        "Sem": "3",
+        "ContentScore": 8.59,
+        "TrainerScore": 8.51,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Commercial Designing",
+        "Curriculum": "Old Curriculum",
+        "College": "NK College",
+        "Sem": "3",
+        "ContentScore": 7.81,
+        "TrainerScore": 8.22,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Financial Accounting",
+        "Curriculum": "Old Curriculum",
+        "College": "NK College",
+        "Sem": "3",
+        "ContentScore": 8.41,
+        "TrainerScore": 8.73,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Language - I Hindi",
+        "Curriculum": "Old Curriculum",
+        "College": "NK College",
+        "Sem": "3",
+        "ContentScore": 7.84,
+        "TrainerScore": 8.65,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Market & Brand Intelligence",
+        "Curriculum": "New Curriculum",
+        "College": "Raheja College",
+        "Sem": "1",
+        "ContentScore": 9.21,
+        "TrainerScore": 9.14,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Fundamentals of Digital Business & Management",
+        "Curriculum": "New Curriculum",
+        "College": "Raheja College",
+        "Sem": "1",
+        "ContentScore": 8.5,
+        "TrainerScore": 7.93,
+        "ActionItems": "- Wait till the end of the semester to check if the ratings go up."
+    },
+    {
+        "Subject": "Overview of Psychology",
+        "Curriculum": "New Curriculum",
+        "College": "Raheja College",
+        "Sem": "1",
+        "ContentScore": 8.5,
+        "TrainerScore": 8.53,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Business Economics",
+        "Curriculum": "New Curriculum",
+        "College": "Raheja College",
+        "Sem": "1",
+        "ContentScore": 7.5,
+        "TrainerScore": 7.93,
+        "ActionItems": "- Attend more Business Economics sessions.\n- Talk to the trainer and understand their perspective.\n- After attending, if the content seems too much, make changes to the deck."
+    },
+    {
+        "Subject": "Foundations of Marketing & Customer Strategies",
+        "Curriculum": "New Curriculum",
+        "College": "Raheja College",
+        "Sem": "1",
+        "ContentScore": 7.75,
+        "TrainerScore": 8.04,
+        "ActionItems": "- Contact  the trainer and ask what is the issue that students are facing in content."
+    },
+    {
+        "Subject": "Content Strategy & Storytelling",
+        "Curriculum": "New Curriculum",
+        "College": "Raheja College",
+        "Sem": "1",
+        "ContentScore": 8.57,
+        "TrainerScore": 8.5,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Introduction to Communication",
+        "Curriculum": "New Curriculum",
+        "College": "Raheja College",
+        "Sem": "1",
+        "ContentScore": 7.93,
+        "TrainerScore": 8.11,
+        "ActionItems": "- Check with Naziya if the deck is being followed.\n- Check with the trainer if there are any issues with the deck.\n- Probably wait till the end of semester to check."
+    },
+    {
+        "Subject": "Media Planning & Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Pillai College",
+        "Sem": "5",
+        "ContentScore": 7.96,
+        "TrainerScore": 8.06,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Web Analytics & Data Management",
+        "Curriculum": "Old Curriculum",
+        "College": "Pillai College",
+        "Sem": "5",
+        "ContentScore": 8.38,
+        "TrainerScore": 8.58,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Consumer Behaviour & Analytics",
+        "Curriculum": "Old Curriculum",
+        "College": "Pillai College",
+        "Sem": "5",
+        "ContentScore": 8.46,
+        "TrainerScore": 8.67,
+        "ActionItems": ""
+    },
+    {
+        "Subject": "Marketing Automation",
+        "Curriculum": "Old Curriculum",
+        "College": "Pillai College",
+        "Sem": "5",
+        "ContentScore": 7.69,
+        "TrainerScore": 7.58,
+        "ActionItems": ""
+    }
 ];
+
