@@ -8,31 +8,19 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <style>
-        .grid-bg {
-            background-image: linear-gradient(to right, #f3f4f6 1px, transparent 1px),
-                              linear-gradient(to bottom, #f3f4f6 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
         .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .heatmap-cell {
-            transition: all 0.3s ease;
-        }
-        .heatmap-cell:hover {
-            transform: scale(1.1);
-            z-index: 10;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
         }
     </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased">
-    <div id="app" class="min-h-screen">
-        <nav class="bg-indigo-700 text-white shadow-lg">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Navigation -->
+        <nav class="bg-indigo-700 text-white shadow-lg sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16 items-center">
                     <div class="flex items-center">
@@ -42,175 +30,142 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <a href="index.html" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-900">Dashboard</a>
-                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Colleges</a>
-                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Subjects</a>
-                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600">Trainers</a>
+                            <a href="colleges.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Colleges</a>
+                            <a href="subjects.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Subjects</a>
+                            <a href="trainers.html" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-600 transition">Trainers</a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
 
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="mb-8">
+        <!-- Main Content -->
+        <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+            <!-- Header -->
+            <div class="mb-8" data-aos="fade-down">
                 <h1 class="text-3xl font-bold text-gray-900">Student Feedback Analysis</h1>
                 <p class="mt-2 text-gray-600">Aug-Sept 2025 Semester Data Visualization</p>
             </div>
 
-            <div class="bg-white rounded-lg shadow p-6 mb-8 grid grid-cols-1 md:grid-cols-4 gap-4">
+            <!-- Filters -->
+            <div class="bg-white rounded-lg shadow p-6 mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">College</label>
-                    <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        <option>All Colleges</option>
-                        <option>Thakur College</option>
-                        <option>KES College</option>
-                        <option>Hinduja College</option>
-                        <option>NK College</option>
-                        <option>Raheja College</option>
-                        <option>Pillai College</option>
+                    <label for="collegeFilter" class="block text-sm font-medium text-gray-700 mb-1">College</label>
+                    <select id="collegeFilter" class="dashboard-filter mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="All">All Colleges</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Semester</label>
-                    <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        <option>All Semesters</option>
-                        <option>Semester 1</option>
-                        <option>Semester 3</option>
-                        <option>Semester 5</option>
+                    <label for="semesterFilter" class="block text-sm font-medium text-gray-700 mb-1">Semester</label>
+                    <select id="semesterFilter" class="dashboard-filter mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="All">All Semesters</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Curriculum</label>
-                    <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        <option>Both</option>
-                        <option>Old Curriculum</option>
-                        <option>New Curriculum</option>
+                    <label for="curriculumFilter" class="block text-sm font-medium text-gray-700 mb-1">Curriculum</label>
+                    <select id="curriculumFilter" class="dashboard-filter mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="All">Both</option>
+                        <option value="Old Curriculum">Old Curriculum</option>
+                        <option value="New Curriculum">New Curriculum</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Score Range</label>
-                    <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        <option>All Scores</option>
-                        <option>High (8-10)</option>
-                        <option>Medium (6-8)</option>
-                        <option>Low (Below 6)</option>
+                    <label for="scoreRangeFilter" class="block text-sm font-medium text-gray-700 mb-1">Score Range</label>
+                    <select id="scoreRangeFilter" class="dashboard-filter mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="All">All Scores</option>
+                        <option value="8-11">High (8-10)</option>
+                        <option value="6-8">Medium (6-8)</option>
+                        <option value="0-6">Low (Below 6)</option>
                     </select>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300">
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-indigo-100 text-indigo-600 mr-4">
                             <i data-feather="award" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-gray-500">Avg Content Score</p>
-                            <p class="text-2xl font-semibold text-gray-900" id="avgContentScore">7.82</p>
+                            <p id="avgContentScore" class="text-2xl font-semibold text-gray-900">...</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300">
+                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-green-100 text-green-600 mr-4">
                             <i data-feather="user" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-gray-500">Avg Trainer Score</p>
-                            <p class="text-2xl font-semibold text-gray-900" id="avgTrainerScore">7.96</p>
+                            <p id="avgTrainerScore" class="text-2xl font-semibold text-gray-900">...</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300">
+                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-blue-100 text-blue-600 mr-4">
                             <i data-feather="trending-up" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-gray-500">Highest Score</p>
-                            <p class="text-2xl font-semibold text-gray-900" id="highestScore">9.31</p>
+                            <p id="highestScore" class="text-2xl font-semibold text-gray-900">...</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300">
+                <div class="bg-white rounded-lg shadow p-6 card-hover transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-red-100 text-red-600 mr-4">
                             <i data-feather="alert-triangle" class="w-6 h-6"></i>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-gray-500">Lowest Score</p>
-                            <p class="text-2xl font-semibold text-gray-900" id="lowestScore">5.26</p>
+                            <p id="lowestScore" class="text-2xl font-semibold text-gray-900">...</p>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Main Charts -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white rounded-lg shadow p-6">
+                <div class="bg-white rounded-lg shadow p-6" data-aos="fade-right">
                     <h2 class="text-lg font-medium text-gray-900 mb-4">College Performance Comparison</h2>
-                    <div class="h-80">
-                        <canvas id="collegeRadarChart"></canvas>
-                    </div>
+                    <div class="h-80"><canvas id="collegeRadarChart"></canvas></div>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow p-6">
+                <div class="bg-white rounded-lg shadow p-6" data-aos="fade-left">
                     <h2 class="text-lg font-medium text-gray-900 mb-4">Performance by Semester</h2>
-                    <div class="h-80">
-                        <canvas id="semesterBarChart"></canvas>
-                    </div>
+                    <div class="h-80"><canvas id="semesterBarChart"></canvas></div>
                 </div>
             </div>
 
+            <!-- Heatmap and Action Items -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <div class="bg-white rounded-lg shadow p-6">
+                 <div class="bg-white rounded-lg shadow p-6" data-aos="fade-right">
                     <h2 class="text-lg font-medium text-gray-900 mb-4">Subject Performance Heatmap</h2>
                     <div id="heatmap" class="h-96"></div>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow p-6">
+                <div class="bg-white rounded-lg shadow p-6" data-aos="fade-left">
                     <h2 class="text-lg font-medium text-gray-900 mb-4">Priority Action Items</h2>
                     <div class="overflow-y-auto max-h-96">
                         <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
+                            <thead class="bg-gray-50 sticky top-0">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">College</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="actionItemsTable" class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Social Media Management</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Thakur College</td>
-                                    [cite_start]<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">- Check the recordings, if available. [cite: 1, 2, 3]</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Social Media Management</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">KES College</td>
-                                    [cite_start]<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">- Check the recordings, if available. [cite: 8, 9]</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Content Strategy &amp; Campaign </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Hinduja College</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">- Watch recordings of this trainer's session (Gowri Shenoy) as they've gotten a low rating in other college as well.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Web Analytics &amp; Data Management</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Hinduja College</td>
-                                    [cite_start]<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">- Talk to the trainer (Aishwarya Dhadke). [cite: 11]</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Consumer Behaviour &amp; Analytics</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Hinduja College</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">- Watch recordings of this trainer's session (Gowri Shenoy) as they've gotten a low rating in other college as well.</td>
-                                </tr>
+                            <tbody id="actionItemsTableBody" class="bg-white divide-y divide-gray-200">
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
-            <div class="bg-white rounded-lg shadow overflow-hidden mb-8">
+            
+            <!-- Detailed Data Table -->
+            <div class="bg-white rounded-lg shadow overflow-hidden" data-aos="fade-up">
                 <div class="px-6 py-4 border-b border-gray-200">
                     <h2 class="text-lg font-medium text-gray-900">Detailed Feedback Data</h2>
                 </div>
@@ -226,230 +181,23 @@
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Curriculum</th>
                             </tr>
                         </thead>
-                        <tbody id="detailedDataTable" class="bg-white divide-y divide-gray-200">
-                            </tbody>
+                        <tbody id="detailedDataTableBody" class="bg-white divide-y divide-gray-200">
+                            <!-- Data will be dynamically inserted here -->
+                        </tbody>
                     </table>
                 </div>
             </div>
         </main>
 
-        <footer class="bg-gray-800 text-white py-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-base text-gray-400">&copy; 2025 BDB Feedback Analytics. All rights reserved.</p>
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 mt-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-base text-gray-400">&copy; 2025 BDB Feedback Analytics. All rights reserved.</p>
             </div>
         </footer>
     </div>
 
-    <script>
-        const rawData = [
-            {"Subject":"Fundamentals of Digital Business Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":7.79,"Student Score - Trainer":7.99},
-            {"Subject":"Quantitative Techniques","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":8.39,"Student Score - Trainer":8.81},
-            {"Subject":"Legal Framework I","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":8.79,"Student Score - Trainer":9.0},
-            {"Subject":"Digital Skills for Business Development","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":8.51,"Student Score - Trainer":8.55},
-            {"Subject":"Foundation of Coding","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":7.09,"Student Score - Trainer":7.17},
-            {"Subject":"Understanding India","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":7.66,"Student Score - Trainer":7.93},
-            {"Subject":"Effective Communication Skills - English ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":7.75,"Student Score - Trainer":8.06},
-            {"Subject":"Indian Knowledge Systems","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":7.65,"Student Score - Trainer":7.74},
-            {"Subject":"Digital Business Landscape","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":null,"Student Score - Content":8.71,"Student Score - Trainer":null},
-            {"Subject":"SWAYAM - Consumer Psychology","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":1,"Student Score - Content":7.78,"Student Score - Trainer":"NA"},
-            {"Subject":"Social Media Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":6.49,"Student Score - Trainer":6.16},
-            {"Subject":"Content Strategy & Campaign","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":7.93,"Student Score - Trainer":8.22},
-            {"Subject":"Accounting for Managers","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":7.13,"Student Score - Trainer":7.36},
-            {"Subject":"Commercial Designing I","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":7.33,"Student Score - Trainer":7.22},
-            {"Subject":"Digital Advertising","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":6.98,"Student Score - Trainer":6.98},
-            {"Subject":"Language 1 (Hindi I)","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":6.13,"Student Score - Trainer":6.64},
-            {"Subject":"Field Project on Digital Business","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":6.62,"Student Score - Trainer":7.13},
-            {"Subject":"SWAYAM - Corporate Social Responsibility","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":3,"Student Score - Content":6.0,"Student Score - Trainer":"NA"},
-            {"Subject":"Media Planning & Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":5,"Student Score - Content":7.52,"Student Score - Trainer":7.25},
-            {"Subject":"Web Analytics & Data Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":5,"Student Score - Content":7.86,"Student Score - Trainer":8.16},
-            {"Subject":"Consumer Behaviour & Analytics","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":5,"Student Score - Content":7.14,"Student Score - Trainer":7.19},
-            {"Subject":"Corporate Communication & Public Relations","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":5,"Student Score - Content":7.52,"Student Score - Trainer":7.98},
-            {"Subject":"Marketing Automation","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":5,"Student Score - Content":7.42,"Student Score - Trainer":7.53},
-            {"Subject":"Design Thinking","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":5,"Student Score - Content":6.19,"Student Score - Trainer":6.19},
-            {"Subject":"Community Engagement Program — Ecotourism & Digital Storytelling","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Thakur College","Sem":5,"Student Score - Content":7.39,"Student Score - Trainer":7.66},
-            {"Subject":"Digital Business Analysis","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":9.14,"Student Score - Trainer":9.44},
-            {"Subject":"Principles of Management ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":8.02,"Student Score - Trainer":8.02},
-            {"Subject":"Digital Marketing Landscape","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":9.05,"Student Score - Trainer":9.35},
-            {"Subject":"Quantitative Techniques","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":8.28,"Student Score - Trainer":8.79},
-            {"Subject":"Managerial Economics","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":6.81,"Student Score - Trainer":7.26},
-            {"Subject":"Foundation Course","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":7.14,"Student Score - Trainer":7.56},
-            {"Subject":"Digital Literacy","Old/New Curriculum":"Old Curriculum","Feedback Date":"Debanjana","College":"KES College","Sem":1,"Student Score - Content":8.37,"Student Score - Trainer":8.42},
-            {"Subject":"Indian Management Thoughts & Practices","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":7.98,"Student Score - Trainer":8.7},
-            {"Subject":"Professional Communication","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":1,"Student Score - Content":8.95,"Student Score - Trainer":9.33},
-            {"Subject":"Social Media Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":3,"Student Score - Content":6.7,"Student Score - Trainer":6.59},
-            {"Subject":"Digital Advertising ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":3,"Student Score - Content":7.37,"Student Score - Trainer":7.64},
-            {"Subject":"Commercial Designing","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":3,"Student Score - Content":7.59,"Student Score - Trainer":7.82},
-            {"Subject":"Content Strategy & Campaign ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":3,"Student Score - Content":8.77,"Student Score - Trainer":8.97},
-            {"Subject":"Language I (Hindi I) ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":3,"Student Score - Content":7.8,"Student Score - Trainer":7.87},
-            {"Subject":"FP - Foundations ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":3,"Student Score - Content":6.32,"Student Score - Trainer":6.98},
-            {"Subject":"Media Planning & Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":5,"Student Score - Content":7.73,"Student Score - Trainer":7.9},
-            {"Subject":"Web Analytics & Data Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":5,"Student Score - Content":7.77,"Student Score - Trainer":8.26},
-            {"Subject":"Consumer Behaviour & Analytics","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":5,"Student Score - Content":6.49,"Student Score - Trainer":6.06},
-            {"Subject":"Corporate Communication & Public Relations","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":5,"Student Score - Content":6.6,"Student Score - Trainer":6.71},
-            {"Subject":"Marketing Automation","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":5,"Student Score - Content":7.44,"Student Score - Trainer":7.71},
-            {"Subject":"Design Thinking","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":5,"Student Score - Content":6.66,"Student Score - Trainer":6.98},
-            {"Subject":"Project work","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"KES College","Sem":5,"Student Score - Content":6.74,"Student Score - Trainer":"NA"},
-            {"Subject":"Social Media Management   ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(A)","Student Score - Content":6.0,"Student Score - Trainer":5.96},
-            {"Subject":"Commercial Designing ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(A)","Student Score - Content":7.46,"Student Score - Trainer":7.59},
-            {"Subject":"Content Strategy & Campaign ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(A)","Student Score - Content":6.57,"Student Score - Trainer":6.44},
-            {"Subject":"Digital Advertising ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(A)","Student Score - Content":8.67,"Student Score - Trainer":9.06},
-            {"Subject":"Financial Accounting ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(A)","Student Score - Content":7.63,"Student Score - Trainer":7.63},
-            {"Subject":"Language I (Hindi) ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(A)","Student Score - Content":5.26,"Student Score - Trainer":6.06},
-            {"Subject":"Social Media Management   ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(B)","Student Score - Content":7.07,"Student Score - Trainer":7.46},
-            {"Subject":"Commercial Designing ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(B)","Student Score - Content":8.18,"Student Score - Trainer":8.21},
-            {"Subject":"Content Strategy & Campaign ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(B)","Student Score - Content":6.79,"Student Score - Trainer":6.93},
-            {"Subject":"Digital Advertising ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(B)","Student Score - Content":8.89,"Student Score - Trainer":8.89},
-            {"Subject":"Financial Accounting ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(B)","Student Score - Content":7.96,"Student Score - Trainer":7.82},
-            {"Subject":"Language I (Hindi) ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":"3(B)","Student Score - Content":6.04,"Student Score - Trainer":6.18},
-            {"Subject":"Media Planning & Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":5,"Student Score - Content":7.77,"Student Score - Trainer":7.69},
-            {"Subject":"Web Analytics & Data Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":5,"Student Score - Content":6.69,"Student Score - Trainer":6.35},
-            {"Subject":"Consumer Behaviour & Analytics","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":5,"Student Score - Content":5.42,"Student Score - Trainer":5.54},
-            {"Subject":"Corporate Communication & Public Relations","Old/New Curriculum":"Old Curriculum","Feedback Date":"Debanjana","College":"Hinduja College","Sem":5,"Student Score - Content":8.08,"Student Score - Trainer":8.31},
-            {"Subject":"Marketing Automation","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":5,"Student Score - Content":8.38,"Student Score - Trainer":8.73},
-            {"Subject":"Design Thinking","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Hinduja College","Sem":5,"Student Score - Content":7.42,"Student Score - Trainer":7.54},
-            {"Subject":"Managerial Economics ","New Curriculum":"New Curriculum","Feedback Date":null,"College":"NK College","Sem":1,"Student Score - Content":8.36,"Student Score - Trainer":8.54},
-            {"Subject":"Content Strategy and Storytelling ","New Curriculum":"New Curriculum","Feedback Date":null,"College":"NK College","Sem":1,"Student Score - Content":9.31,"Student Score - Trainer":9.36},
-            {"Subject":"Market & Brand Intelligence","New Curriculum":"New Curriculum","Feedback Date":null,"College":"NK College","Sem":1,"Student Score - Content":9.29,"Student Score - Trainer":9.17},
-            {"Subject":"Foundation of Marketing & Customer Strategies ","New Curriculum":"New Curriculum","Feedback Date":null,"College":"NK College","Sem":1,"Student Score - Content":9.03,"Student Score - Trainer":9.02},
-            {"Subject":"Fundamentals of Digital Business & Management ","New Curriculum":"New Curriculum","Feedback Date":null,"College":"NK College","Sem":1,"Student Score - Content":9.1,"Student Score - Trainer":9.07},
-            {"Subject":"Introduction to Psychology ","New Curriculum":"New Curriculum","Feedback Date":"Seeya","College":"NK College","Sem":1,"Student Score - Content":9.15,"Student Score - Trainer":9.0},
-            {"Subject":"Effective Communication Skills ","New Curriculum":"New Curriculum","Feedback Date":null,"College":"NK College","Sem":1,"Student Score - Content":8.75,"Student Score - Trainer":8.69},
-            {"Subject":"Indian Ethos in Management","New Curriculum":"New Curriculum","Feedback Date":"Debanjana","College":"NK College","Sem":1,"Student Score - Content":8.66,"Student Score - Trainer":8.75},
-            {"Subject":"Foundation Course ","New Curriculum":"New Curriculum","Feedback Date":"Debanjana","College":"NK College","Sem":1,"Student Score - Content":8.71,"Student Score - Trainer":8.54},
-            {"Subject":"Digital Advertising ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"NK College","Sem":3,"Student Score - Content":8.41,"Student Score - Trainer":8.78},
-            {"Subject":"Content Strategy and Campaign ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"NK College","Sem":3,"Student Score - Content":9.22,"Student Score - Trainer":9.3},
-            {"Subject":"Social Media Management ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"NK College","Sem":3,"Student Score - Content":8.59,"Student Score - Trainer":8.51},
-            {"Subject":"Commercial Designing ","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"NK College","Sem":3,"Student Score - Content":7.81,"Student Score - Trainer":8.22},
-            {"Subject":"Financial Accounting","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"NK College","Sem":3,"Student Score - Content":8.41,"Student Score - Trainer":8.73},
-            {"Subject":"Language - I Hindi","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"NK College","Sem":3,"Student Score - Content":7.84,"Student Score - Trainer":8.65},
-            {"Subject":" Market & Brand Intelligence ","New Curriculum":"New Curriculum","Feedback Date":null,"College":"Raheja College","Sem":1,"Student Score - Content":9.21,"Student Score - Trainer":9.14},
-            {"Subject":"Fundamentals of Digital Business & Management ","New Curriculum":"New Curriculum","Feedback Date":"Krishnan:","College":"Raheja College","Sem":1,"Student Score - Content":8.5,"Student Score - Trainer":7.93},
-            {"Subject":"Overview of Psychology ","New Curriculum":"New Curriculum","Feedback Date":"Seeya","College":"Raheja College","Sem":1,"Student Score - Content":8.5,"Student Score - Trainer":8.53},
-            {"Subject":"Business Economics","New Curriculum":"New Curriculum","Feedback Date":"Debanjana: 16.09.25","College":"Raheja College","Sem":1,"Student Score - Content":7.5,"Student Score - Trainer":7.93},
-            {"Subject":"Foundations of Marketing & Customer Strategies ","New Curriculum":"New Curriculum","Feedback Date":null,"College":"Raheja College","Sem":1,"Student Score - Content":7.75,"Student Score - Trainer":8.04},
-            {"Subject":"Content Strategy & Storytelling","New Curriculum":"New Curriculum","Feedback Date":null,"College":"Raheja College","Sem":1,"Student Score - Content":8.57,"Student Score - Trainer":8.5},
-            {"Subject":"Introduction to Communication","New Curriculum":"New Curriculum","Feedback Date":null,"College":"Raheja College","Sem":1,"Student Score - Content":7.93,"Student Score - Trainer":8.11},
-            {"Subject":"Media Planning & Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Pillai College","Sem":5,"Student Score - Content":7.96,"Student Score - Trainer":8.06},
-            {"Subject":"Web Analytics & Data Management","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Pillai College","Sem":5,"Student Score - Content":8.38,"Student Score - Trainer":8.58},
-            {"Subject":"Consumer Behaviour & Analytics","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Pillai College","Sem":5,"Student Score - Content":8.46,"Student Score - Trainer":8.67},
-            {"Subject":"Marketing Automation","Old/New Curriculum":"Old Curriculum","Feedback Date":null,"College":"Pillai College","Sem":5,"Student Score - Content":7.69,"Student Score - Trainer":7.58}
-        ];
-
-        // Initialize Feather Icons
-        feather.replace();
-        
-        // Initialize AOS
-        AOS.init();
-
-        // Populate Detailed Data Table
-        const tableBody = document.getElementById('detailedDataTable');
-        rawData.forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${row.Subject || 'N/A'}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row.College || 'N/A'}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row.Sem || 'N/A'}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row['Student Score - Content'] || 'N/A'}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row['Student Score - Trainer'] || 'N/A'}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row['Old/New Curriculum'] || 'N/A'}</td>
-            `;
-            tableBody.appendChild(tr);
-        });
-
-        // College Performance Radar Chart (using static data for now)
-        const collegeRadarCtx = document.getElementById('collegeRadarChart').getContext('2d');
-        const collegeRadarChart = new Chart(collegeRadarCtx, {
-            type: 'radar',
-            data: {
-                labels: ['Thakur', 'KES', 'Hinduja', 'NK', 'Raheja', 'Pillai'],
-                datasets: [
-                    {
-                        label: 'Avg Content Score',
-                        data: [7.5, 8.1, 7.2, 8.7, 8.3, 8.1],
-                        backgroundColor: 'rgba(79, 70, 229, 0.2)',
-                        borderColor: 'rgba(79, 70, 229, 1)',
-                        borderWidth: 2,
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { r: { suggestedMin: 5, suggestedMax: 10 } }
-            }
-        });
-
-        // Semester Performance Bar Chart (using static data for now)
-        const semesterBarCtx = document.getElementById('semesterBarChart').getContext('2d');
-        const semesterBarChart = new Chart(semesterBarCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Semester 1', 'Semester 3', 'Semester 5'],
-                datasets: [
-                    {
-                        label: 'Content Score',
-                        data: [8.4, 7.3, 7.3],
-                        backgroundColor: 'rgba(79, 70, 229, 0.7)',
-                    },
-                    {
-                        label: 'Trainer Score',
-                        data: [8.6, 7.4, 7.3],
-                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: { y: { beginAtZero: false, min: 5, max: 10 } }
-            }
-        });
-
-        // Subject Heatmap
-        const heatmapData = rawData
-            .filter(d => d.Subject && d['Student Score - Content'])
-            .map(d => ({
-                x: d.Subject.trim(),
-                y: d['Student Score - Content']
-            }));
-            
-        const heatmapOptions = {
-            series: [{
-                name: 'Content Score',
-                data: heatmapData
-            }],
-            chart: {
-                type: 'heatmap',
-                height: '100%',
-                toolbar: { show: false }
-            },
-            plotOptions: {
-                heatmap: {
-                    colorScale: {
-                        ranges: [
-                            { from: 0, to: 6.5, color: '#EF4444', name: 'Low' },
-                            { from: 6.5, to: 8, color: '#F59E0B', name: 'Medium' },
-                            { from: 8, to: 10, color: '#10B981', name: 'High' }
-                        ]
-                    }
-                }
-            },
-            dataLabels: { enabled: false },
-            xaxis: {
-                type: 'category',
-                labels: { show: false } // Hiding x-axis labels to prevent clutter
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        return val.toFixed(2)
-                    }
-                }
-            }
-        };
-
-        const heatmap = new ApexCharts(document.querySelector("#heatmap"), heatmapOptions);
-        heatmap.render();
-    </script>
+    <script src="data.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
