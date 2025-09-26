@@ -161,8 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return {
                 label: college,
                 data: [
-                    contentScores.length ? contentScores.reduce((a, b) => a + b) / contentScores.length : 0,
-                    trainerScores.length ? trainerScores.reduce((a, b) => a + b) / trainerScores.length : 0,
+                    contentScores.length ? contentScores.reduce((a, b) => a + b, 0) / contentScores.length : 0,
+                    trainerScores.length ? trainerScores.reduce((a, b) => a + b, 0) / trainerScores.length : 0,
                 ],
                 backgroundColor: `${randomColor}, 0.2)`,
                 borderColor: `${randomColor}, 1)`,
@@ -250,9 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach(item => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.Subject}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.College}</td>
-                <td class="px-6 py-4 text-sm text-gray-500">${item.ActionItems}</td>
+                <td class="px-6 py-4 text-sm font-medium text-gray-900 break-words">${item.Subject}</td>
+                <td class="px-6 py-4 text-sm text-gray-500 break-words">${item.College}</td>
+                <td class="px-6 py-4 text-sm text-gray-500 break-words">${item.ActionItems}</td>
             `;
             tableBody.appendChild(tr);
         });
@@ -306,6 +306,15 @@ document.addEventListener('DOMContentLoaded', () => {
             plotOptions: { treemap: { distributed: true, enableShades: false } },
             title: { text: 'Subject Performance (by Average Content Score)', align: 'center'},
             legend: { show: false },
+            dataLabels: {
+                enabled: true,
+                style: {
+                    fontSize: '16px',
+                },
+                formatter: function(text, op) {
+                    return [text, op.value.toFixed(1)]
+                },
+            },
             tooltip: { y: { formatter: val => val.toFixed(2) } }
         };
 
