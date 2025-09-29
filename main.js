@@ -300,6 +300,24 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(d => d.y > 0)
             .sort((a, b) => b.y - a.y); 
 
+        // Helper function to wrap text into multiple lines
+        function wrapText(text, maxLineLength = 20) {
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLineLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            });
+            lines.push(currentLine); // Add the last line
+            return lines;
+        }
+
         const options = {
             series: [{ name: 'Average Score', data: subjectsData }],
             chart: { type: 'treemap', height: '100%', toolbar: { show: true } },
@@ -309,12 +327,22 @@ document.addEventListener('DOMContentLoaded', () => {
             dataLabels: {
                 enabled: true,
                 style: {
-                    fontSize: '20px',
-                    fontWeight: 'bold'
+                    fontSize: '16px',
+                    fontWeight: 'bold',
+                    fontFamily: 'Arial, sans-serif'
                 },
                 formatter: function(text, op) {
-                    return [text, op.value.toFixed(1)]
+                    const score = op.value.toFixed(1);
+                    // If the subject name is long, wrap it into multiple lines
+                    if (text.length > 15) {
+                        const wrappedLines = wrapText(text, 15);
+                        wrappedLines.push(score); // Add score as the last line
+                        return wrappedLines;
+                    }
+                    // Otherwise, show the full name and score on separate lines
+                    return [text, score];
                 },
+                offsetY: -4
             },
             tooltip: { y: { formatter: val => val.toFixed(2) } }
         };
